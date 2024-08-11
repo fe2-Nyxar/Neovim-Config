@@ -1,47 +1,40 @@
-local options = {	
+local options = {
     -- Cursor shape "wide"
-   -- guicursor = "",
-  
-    -- Line numbers
-   nu = true,
-   relativenumber = true,
-   
-   -- tabs
-   tabstop = 4,
-   softtabstop = 4,
-   shiftwidth = 4,
-   expandtab = true,
+    -- guicursor = "",
 
-   smartindent = true,
-   wrap = false,
+    -- Line numbers
+    nu = true,
+    rnu = true,
+    -- tabs
+    tabstop = 4,
+    softtabstop = 4,
+    shiftwidth = 4,
+    expandtab = true,
+
+    smartindent = true,
+    wrap = false,
 
     -- backups
-   swapfile = false,
-   backup = false,
-   undodir = os.getenv("HOME").."/.vim/undodir",
-   undofile = true,
+    swapfile = false,
+    backup = false,
+    undodir = os.getenv("HOME") .. "/.vim/undodir",
+    undofile = true,
 
     -- search operations
-   hlsearch = false,
-   incsearch = true,
-
-   -- gui colors
-   termguicolors = true,
+    hlsearch = false,
+    incsearch = true,
+    -- gui colors
+    termguicolors = true,
 
     scrolloff = 8,
-    signcolumn= "no",
-   
-   updatetime = 50,
-   colorcolumn = "0", 
+    signcolumn = "no",
+    updatetime = 50,
+    --colorcolumn = "0",_
 }
 
-for k , v in pairs(options)do
-	vim.opt[k] = v
+for k, v in pairs(options) do
+    vim.opt[k] = v
 end
 
 
 vim.g.mapleader = " "
-
-
-
-

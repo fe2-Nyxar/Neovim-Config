@@ -1,40 +1,46 @@
 local lsp = require("lsp-zero")
 
-local lsp_list= {
-        "luau_lsp",
-	    "lua_ls",
-        "nil_ls",
-		"eslint",
-	    "tsserver",
-		"bashls",
-		"intelephense",
-		"cssls",
-		"cssmodules_ls",
-		"css_variables",
-        "tailwindcss",
-        "jsonls",
-        --"nixpkgs-fmt",
-        "docker_compose_language_service",
-        "dockerls",
-	}
+local lsp_list = {
+    "luau_lsp",
+    "lua_ls",
+    "nil_ls",
+    "eslint",
+    "tsserver",
+    "bashls",
+    "intelephense",
+    "cssls",
+    "cssmodules_ls",
+    "css_variables",
+    "tailwindcss",
+    "jsonls",
+    --"nixpkgs-fmt",
+    "docker_compose_language_service",
+    "dockerls",
+    "emmet_language_server",
+    "html",
+    "graphql",
+}
 
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = lsp_list,
+    ensure_installed = lsp_list,
 })
-
-
 
 local lspconfig = require("lspconfig")
 
 for _, server in ipairs(lsp_list) do
-
     lspconfig[server].setup({})
-
 end
 
---[[ 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.ejs" },
+    callback = function()
+        vim.bo.filetype = "html"
+    end,
+})
+
+--[[
 local cmd = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -48,7 +54,7 @@ lsp.setup_nvim_cmp({
 
 lsp.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
-    
+
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -64,4 +70,4 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup();]]--
+lsp.setup();]] --
