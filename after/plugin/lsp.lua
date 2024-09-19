@@ -19,6 +19,7 @@ local lsp_list = {
     "emmet_language_server",
     "html",
     "graphql",
+    "solidity"
 }
 
 

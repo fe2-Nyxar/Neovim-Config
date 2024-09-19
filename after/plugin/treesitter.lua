@@ -4,6 +4,7 @@ require'nvim-treesitter.configs'.setup {
 		"lua",
         "luau",
 		"javascript",
+        "typescript",
 		"c",
 		"php",
 		"css",
@@ -12,12 +13,18 @@ require'nvim-treesitter.configs'.setup {
         "fish",
         "bash",
         "json",
+        "jsonc",
         "dockerfile",
         "yaml",
         "python",
         "rust",
         "html",
-        "graphql"
+        "graphql",
+        "solidity",
+        "yuck",
+        "rasi",
+        "scss",
+
 	},
 	sync_install = false,
     indent = {

@@ -29,6 +29,21 @@ local plugins = {
         opts = {},
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+    --- open url on the fly ---
+    -- lazy.nvim
+    {
+        "sontungexpt/url-open",
+        branch = "mini",
+        event = "VeryLazy",
+        cmd = "URLOpenUnderCursor",
+        --[[ config = function()
+            local status_ok, url_open = pcall(require, "url-open")
+            if not status_ok then
+                return
+            end
+            url_open.setup({})
+        end,--]]
+    },
     --- lazygit ---
     {
         "kdheepak/lazygit.nvim",
@@ -46,8 +61,19 @@ local plugins = {
             { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
         },
     },
+    --- color highlighter ---
+    { 'norcalli/nvim-colorizer.lua' },
     --- better Comments ---
     { 'numToStr/Comment.nvim' },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
     --- transparent background ---
     { 'tribela/vim-transparent' },
     --setting up the lsp

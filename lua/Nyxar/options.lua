@@ -14,6 +14,8 @@ local options = {
     smartindent = true,
     wrap = false,
 
+    clipboard="unnamed,unnamedplus",
+
     -- backups
     swapfile = false,
     backup = false,
@@ -25,9 +27,8 @@ local options = {
     incsearch = true,
     -- gui colors
     termguicolors = true,
-
     scrolloff = 8,
-    signcolumn = "no",
+    signcolumn = "yes",
     updatetime = 50,
     --colorcolumn = "0",_
 }
@@ -36,5 +37,3 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-
-vim.g.mapleader = " "
