@@ -19,7 +19,15 @@ dashboard.setup({
         shortcut = {
             { icon = '󰊳 ', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             { icon = ' ', icon_hl = '@variable', desc = 'Files', group = 'Label', action = 'Telescope find_files', key = 'f' },
-            { icon = ' ', desc = 'GitHub', group = '@property', action = 'Open GitHub acc', key = 'g', https = 'https://github.com/fe2-Nyxar' },
+            {
+                icon = ' ',
+                desc = 'GitHub',
+                group = '@property',
+                action = function(self)
+                    os.execute('xdg-open https://github.com/fe2-Nyxar')
+                end,
+                key = 'g',
+            },
             { icon = '  ', desc = 'Apps', group = 'DiagnosticHint', action = 'Telescope app', key = 'a' },
             { icon = '   ', desc = 'dotfiles', group = 'Number', action = 'Telescope dotfiles', key = 'd' },
         },

@@ -75,7 +75,7 @@ local plugins = {
         }
     },
     --- transparent background ---
-    { 'tribela/vim-transparent' },
+    --  { 'tribela/vim-transparent' },
     --setting up the lsp
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
@@ -99,5 +99,5 @@ local plugins = {
     }
 }
 
-local opts = {}
+--local opts = {}
 require("lazy").setup(plugins);

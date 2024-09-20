@@ -5,7 +5,7 @@ local lsp_list = {
     "lua_ls",
     "nil_ls",
     "eslint",
-    "tsserver",
+    "ts_ls",
     "bashls",
     "intelephense",
     "cssls",
@@ -22,14 +22,12 @@ local lsp_list = {
     "solidity"
 }
 
-
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = lsp_list,
 })
 
 local lspconfig = require("lspconfig")
-
 for _, server in ipairs(lsp_list) do
     lspconfig[server].setup({})
 end
@@ -41,18 +39,35 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     end,
 })
 
---[[
-local cmd = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp = require('cmp')
+local cmp_action = lsp.cmp_action()
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    })
+
+})
+
+
+--[[local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-Tab>'] = cmp.mapping.confirm({select = true}),
+    ['<C-Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<C-space>'] = cmp.mapping.complete(),
 })
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
-})
-
+}) --]]
+--[[
 lsp.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
 
