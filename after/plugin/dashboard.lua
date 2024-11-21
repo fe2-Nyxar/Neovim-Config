@@ -1,7 +1,7 @@
 local dashboard = require "dashboard";
 
 dashboard.setup({
-    theme = 'hyper', --  theme is doom and hyper default is hyper
+    theme = 'hyper',                  --  theme is doom and hyper default is hyper
     config = {
         header = {
             [[                                   ]],

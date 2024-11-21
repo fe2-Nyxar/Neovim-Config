@@ -1,5 +1,6 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    print("installing lazy.nvim");
     vim.fn.system({
         "git",
         "clone",
@@ -16,33 +17,28 @@ local plugins = {
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
     --- status bar ---
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     --- file explorer ---
     {
         'stevearc/oil.nvim',
         opts = {},
-        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     --- open url on the fly ---
-    -- lazy.nvim
+    {
+        'vyfor/cord.nvim',
+        build = './build || .\\build',
+        event = 'VeryLazy',
+        --opts = {}, calls require('cord').setup()
+    },
     {
         "sontungexpt/url-open",
         branch = "mini",
         event = "VeryLazy",
         cmd = "URLOpenUnderCursor",
-        --[[ config = function()
-            local status_ok, url_open = pcall(require, "url-open")
-            if not status_ok then
-                return
-            end
-            url_open.setup({})
-        end,--]]
     },
     --- lazygit ---
     {
@@ -67,7 +63,6 @@ local plugins = {
     { 'numToStr/Comment.nvim' },
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
             -- your configuration comes here
             -- or leave it empty to use the default settings
@@ -76,6 +71,12 @@ local plugins = {
     },
     --- transparent background ---
     --  { 'tribela/vim-transparent' },
+    -- formatter --
+    {
+        'stevearc/conform.nvim',
+        branch = 'nvim-0.9',
+        opts = {},
+    },
     --setting up the lsp
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
@@ -86,6 +87,7 @@ local plugins = {
     { 'L3MON4D3/LuaSnip' },
     -- lsp setup end here
     --- neovim terminal ---
+    { "nvim-tree/nvim-web-devicons" },
     { 'akinsho/toggleterm.nvim',          version = "*",      config = true },
     { "mbbill/undotree" },
     { "ThePrimeagen/harpoon" },
@@ -95,8 +97,8 @@ local plugins = {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
-        dependencies = { 'nvim-lua/plenary.nvim' }
-    }
+    },
+    { 'nvim-lua/plenary.nvim' }
 }
 
 --local opts = {}

@@ -1,13 +1,13 @@
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = {
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = {
         "zig",
-		"lua",
+        "lua",
         "luau",
-		"javascript",
+        "javascript",
         "typescript",
-		"c",
-		"php",
-		"css",
+        "c",
+        "php",
+        "css",
         "nix",
         "toml",
         "fish",
@@ -16,6 +16,7 @@ require'nvim-treesitter.configs'.setup {
         "jsonc",
         "dockerfile",
         "yaml",
+        "xml",
         "python",
         "rust",
         "html",
@@ -24,17 +25,17 @@ require'nvim-treesitter.configs'.setup {
         "yuck",
         "rasi",
         "scss",
+        "markdown",
+        "yaml",
 
-	},
-	sync_install = false,
+    },
+    sync_install = false,
     indent = {
         enable = true,
     },
-	auto_install = true,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+    },
 }
-
-

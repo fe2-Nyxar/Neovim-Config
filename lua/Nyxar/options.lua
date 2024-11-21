@@ -14,7 +14,7 @@ local options = {
     smartindent = true,
     wrap = false,
 
-    clipboard="unnamed,unnamedplus",
+    clipboard = "unnamed,unnamedplus",
 
     -- backups
     swapfile = false,
@@ -31,9 +31,9 @@ local options = {
     signcolumn = "yes",
     updatetime = 50,
     --colorcolumn = "0",_
+    mouse = "" -- disable mouse
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
-

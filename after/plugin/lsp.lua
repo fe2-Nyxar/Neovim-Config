@@ -13,23 +13,63 @@ local lsp_list = {
     "css_variables",
     "tailwindcss",
     "jsonls",
-    --"nixpkgs-fmt",
     "docker_compose_language_service",
     "dockerls",
     "emmet_language_server",
     "html",
     "graphql",
-    "solidity"
+    "solidity",
+    "hyprls",
+    "yamlls",
 }
 
-require('mason').setup({})
+require('mason').setup {}
 require('mason-lspconfig').setup({
     ensure_installed = lsp_list,
+    auto_update = true,
 })
 
 local lspconfig = require("lspconfig")
+
+lspconfig.nil_ls.setup({
+    settings = {
+        ['nil'] = {
+            formatting = {
+                command = { "nixfmt" },
+            },
+        },
+    },
+})
+
+lspconfig.yamlls.setup({
+    settings = {
+        yaml = {
+            schemas = {
+                kubernetes = "*.k8s.yaml",
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] =
+                "*api*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
+                "*docker-compose*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
+                "*flow*.{yml,yaml}",
+            }
+        }
+    }
+})
+
 for _, server in ipairs(lsp_list) do
-    lspconfig[server].setup({})
+    if server ~= "nil_ls" and server ~= "yamlls" then
+        lspconfig[server].setup({})
+    end
 end
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
@@ -42,31 +82,23 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 local cmp = require('cmp')
 local cmp_action = lsp.cmp_action()
 cmp.setup({
+    sources = {
+        { name = "nvim_lsp" },
+    },
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-Tab>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
     })
-
 })
+lsp.setup();
 
 
---[[local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-Tab>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-space>'] = cmp.mapping.complete(),
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-}) --]]
 --[[
 lsp.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
@@ -85,5 +117,4 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
-
-lsp.setup();]] --
+--]]
