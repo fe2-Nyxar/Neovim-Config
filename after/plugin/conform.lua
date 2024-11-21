@@ -3,7 +3,7 @@ conform.setup({
     formatters_by_ft = {
         lua = { "stylua" },
         python = { "isort", "black" },
-        rust = { "rustfmt" },
+        rust = { "prettier" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
@@ -23,5 +23,5 @@ conform.setup({
 
 
 vim.keymap.set({ "n", "v" }, "<leader>f", function()
-    require("conform").format({ lsp_fallback = false, async = true })
+    require("conform").format({ lsp_fallback = true, async = true })
 end, { desc = "format the buf" })
