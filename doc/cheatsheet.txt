@@ -1,0 +1,62 @@
+*cheatsheet.txt*
+
+
+================================================================================
+Cheatsheet for My Neovim Configuration                                *cheatsheet*
+
+This file contains an overview of my keybindings and plugin usage in Neovim.
+
+Keybindings ~
+-------------------------------------------------------------------------------
+
+General Keybindings:
+
+
+
+Plugin-Specific Keybindings:
+- Telescope:
+  - `<leader>ff`: Find files
+  - `<leader>fg`: Find git files
+  - `<leader>fs` : live grep
+- ToggleTerm:
+  - `<C-;>`: Open a terminal
+- LazyGit:
+  - `<leader>lg`: Open LazyGit
+- harpoon:
+  - `M`: Open harpoon
+  - `<leader>a`: add file to list
+  - `me`: switch to first file
+  - `mz`: switch to second file
+  - `ma`: switch to third file
+  - `ms`: switch to Fourth file
+- Oil.nvim (file explorer):
+  - `-`: open parent dir
+  - `+`: retreat to file
+- OpenUrl:
+  - `gx`: open url under cursor
+- conform:
+  - `<leader>f`: format file code 
+- dressing:
+  - `<leader>tb`: list opened buffers
+- undoTree:
+  - `<leader>u`: show history tree of a buffer
+  - `u`: revert to older changes
+  - `U`: revert to newer changes 
+- comment.nvim:
+  - `gc`: signle line comments
+  - `gb`: multi-line comments
+
+
+Plugins ~
+-------------------------------------------------------------------------------
+
+- Distant: A  for Neovim
+  Command: `:Distant`
+
+- LazyGit: A Git interface for Neovim
+  Command: `:LazyGit`
+
+- Oil.nvim: File explorer
+  Command: `:Oil`
+
+================================================================================
