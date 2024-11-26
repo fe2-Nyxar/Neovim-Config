@@ -3,19 +3,11 @@
 ## Overview
 [Brief description of your Neovim setup, philosophy, and key features]
 
-## System Requirements
-- Neovim version: 
-- Required dependencies:
-- Recommended OS:
 
 ## Plugin Management
 ### Plugin Manager
-[e.g., Packer, vim-plug, lazy.nvim]
+[lazy.nvim]
 
-### Key Plugins
-- Plugin 1: Description and purpose
-- Plugin 2: Description and purpose
-- Plugin 3: Description and purpose
 
 ## Custom Keymappings
 | Keybinding | Function | Mode |
@@ -24,7 +16,7 @@
 | `jk` | Exit insert mode | Insert |
 
 ## Screenshot
-![Neovim Configuration](neovim-screenshot.png)
+![Neovim Configuration](showcase/dashboard.png)
 
 ## Installation Steps
 1. Clone the repository
