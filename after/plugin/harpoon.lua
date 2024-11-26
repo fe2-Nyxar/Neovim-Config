@@ -10,6 +10,38 @@ harpoon:setup({
 })
 
 local conf = require("telescope.config").values
+<<<<<<< HEAD
+=======
+--[[ local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+			layout_config = {
+				preview_width = 0.6, -- Adjust the preview window size (0.0 to 1.0)
+				width = 0.8, -- Adjust the width of the picker
+				height = 0.8, -- Adjust the height of the picker
+				preview_cutoff = 120, -- Maximum number of lines to show in the preview
+			},
+			mappings = {
+				i = {
+					["<Esc>"] = require("telescope.actions").close, -- Escape to close picker
+				},
+			},
+		})
+		:find()
+end ]]
+
+>>>>>>> origin/master
 local function toggle_telescope(harpoon_files)
 	local make_finder = function()
 		local paths = {}
@@ -48,6 +80,13 @@ local function toggle_telescope(harpoon_files)
 		:find()
 end
 
+<<<<<<< HEAD
+=======
+--[[ vim.keymap.set("n", "<c-s>", function()
+	harpoon:list():remove()
+end) ]]
+
+>>>>>>> origin/master
 vim.keymap.set("n", "M", function()
 	toggle_telescope(harpoon:list())
 end, { desc = "Open harpoon window" })
