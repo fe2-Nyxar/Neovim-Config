@@ -8,13 +8,6 @@
 ### Plugin Manager
 [lazy.nvim]
 
-
-## Custom Keymappings
-| Keybinding | Function | Mode |
-|-----------|----------|------|
-| `<leader>ff` | Find files | Normal |
-| `jk` | Exit insert mode | Insert |
-
 ## Screenshot
 ![Neovim Configuration](showcase/dashboard.png)
 ![Neovim Configuration](showcase/inside_a_file.png)
@@ -24,6 +17,9 @@
 - Font: fira code
 - Statusline/tabline: lualine
 
+## for help
+### read the cheatsheet
+`help cheatsheet`
 
 ## Future Improvements
 - [ ] Add more language servers
