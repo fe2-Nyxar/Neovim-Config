@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup({
 		"php",
 		"css",
 		--        "nix",
+		"desktop",
 		"toml",
 		"fish",
 		"bash",
@@ -27,6 +28,7 @@ require("nvim-treesitter.configs").setup({
 		"scss",
 		"markdown",
 		"yaml",
+		"toml",
 	},
 	sync_install = false,
 	indent = {

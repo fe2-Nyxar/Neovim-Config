@@ -25,6 +25,14 @@ local plugins = {
 		"letieu/harpoon-lualine",
 		dependencies = {},
 	},
+	--- indent-line ---
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
+	},
 	--- tabline bar ---
 	--[[	{
 		"romgrk/barbar.nvim",
@@ -84,7 +92,7 @@ local plugins = {
 	-- formatter --
 	{
 		"stevearc/conform.nvim",
-		branch = "nvim-0.9",
+		branch = "master",
 		event = "BufWritePre",
 	},
 	--setting up the lsp

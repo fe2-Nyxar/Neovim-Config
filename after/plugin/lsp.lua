@@ -21,6 +21,7 @@ local lsp_list = {
 	"hyprls",
 	"yamlls",
 	"helm_ls",
+	"taplo",
 }
 
 require("mason").setup({
@@ -28,6 +29,7 @@ require("mason").setup({
 		border = "rounded",
 	},
 })
+
 require("mason-lspconfig").setup({
 	ensure_installed = lsp_list,
 	auto_update = true,
@@ -54,18 +56,28 @@ lspconfig.nixd.setup({
 		},
 	},
 })
+lspconfig.taplo.setup({
+	settings = {
+		toml = {
+			schemas = {
+				["https://starship.rs/config-schema.json"] = "starship.toml",
+			},
+		},
+	},
+})
 
 lspconfig.yamlls.setup({
 	settings = {
 		filetypes = { "yaml", "yml" },
 		yaml = {
 			schemas = {
-				kubernetes = "*.k8s.{yml,yaml}",
+				-- kubernetes = "*.k8s.{yml,yaml}",
+				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.3/all.json"] = "*.k8s.{yml,yaml}",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
 				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 				["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
 				["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-				["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+				["http://json.schemastore.org/kstomization"] = "kustomization.{yml,yaml}",
 				["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
 				["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 				["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
@@ -73,7 +85,7 @@ lspconfig.yamlls.setup({
 				["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
 				["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
 				["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
-				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.1-standalone-strict/all.json"] = "*.k8s.{yml,yaml}",
+				-- ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.3-standalone-strict/all.json"] = "*.k8s.{yml,yaml}",
 			},
 			completion = true,
 			hover = true,
@@ -82,7 +94,7 @@ lspconfig.yamlls.setup({
 })
 
 for _, server in ipairs(lsp_list) do
-	if server ~= "yamlls" then
+	if server ~= "yamlls" and server ~= "taplo" then
 		lspconfig[server].setup({})
 	end
 end
