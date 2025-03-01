@@ -16,4 +16,4 @@ require("url-open").setup({
 
 vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>")
 
---TEST: https://chatgpt.com/c/66e650e4-1654-8008-b304-0532012f1b52
+--TEST: https://www.youtube.com/watch?v=ZHgyQGoeaB0

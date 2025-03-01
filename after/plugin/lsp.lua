@@ -93,11 +93,12 @@ lspconfig.yamlls.setup({
 	},
 })
 
-for _, server in ipairs(lsp_list) do
-	if server ~= "yamlls" and server ~= "taplo" then
-		lspconfig[server].setup({})
-	end
-end
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "*.hl", "hypr*.conf" },
+	callback = function()
+		vim.bo.filetype = "hyprlang"
+	end,
+})
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = { "*.ejs" },
@@ -105,6 +106,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 		vim.bo.filetype = "html"
 	end,
 })
+
+for _, server in ipairs(lsp_list) do
+	if server ~= "yamlls" and server ~= "taplo" then
+		lspconfig[server].setup({})
+	end
+end
 
 local cmp = require("cmp")
 local cmp_action = lsp.cmp_action()

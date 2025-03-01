@@ -14,6 +14,7 @@ conform.setup({
 		graphql = { "prettier" },
 		markdown = { "prettier" },
 		nix = { "nixpkgs-fmt" },
+		hypr = { "hyprls" },
 	},
 	format_on_save = {
 		lsp_fallback = true,
