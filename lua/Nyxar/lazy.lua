@@ -53,7 +53,7 @@ local plugins = {
 	-- presence on discord
 	{
 		"vyfor/cord.nvim",
-		build = ":cord update",
+		build = ":Cord update",
 		event = "VeryLazy",
 		--opts = {}, calls require('cord').setup()
 	},
